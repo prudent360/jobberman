@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jobberman - Find Your Dream Job</title>
+    <meta name="description" content="Explore and discover the right job for you with Jobberman. The best job listing platform for seekers and employers.">
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            light: '#818cf8',
+                            DEFAULT: '#6366f1',
+                            dark: '#4f46e5',
+                        },
+                        secondary: {
+                            light: '#60a5fa',
+                            DEFAULT: '#3b82f6',
+                            dark: '#2563eb',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-out forwards',
+                        'slide-up': 'slideUp 0.5s ease-out forwards',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(20px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-[#f8fafc] text-slate-900 font-sans selection:bg-primary/20">
+
+    <!-- Navbar -->
+    <header id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="#" class="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                        Jobberman
+                    </a>
+                </div>
+
+                <!-- Desktop Nav Links -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <div class="relative group">
+                        <button class="flex items-center space-x-1 text-sm font-medium hover:text-primary transition-colors">
+                            <span>Job Seekers</span>
+                            <i data-lucide="chevron-down" class="w-4 h-4"></i>
+                        </button>
+                        <!-- Dropdown -->
+                        <div class="absolute top-full -left-4 w-48 mt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform group-hover:translate-y-0 translate-y-2">
+                            <div class="bg-white rounded-xl shadow-xl border border-slate-100 py-2 overflow-hidden">
+                                <a href="#" class="block px-4 py-2 text-sm text-slate-600 hover:bg-slate-50 hover:text-primary">Find Jobs</a>
+                                <a href="#" class="block px-4 py-2 text-sm text-slate-600 hover:bg-slate-50 hover:text-primary">Applications</a>
+                                <a href="#" class="block px-4 py-2 text-sm text-slate-600 hover:bg-slate-50 hover:text-primary">Saved Jobs</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="relative group">
+                        <button class="flex items-center space-x-1 text-sm font-medium hover:text-primary transition-colors">
+                            <span>Career</span>
+                            <i data-lucide="chevron-down" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                    <div class="relative group">
+                        <button class="flex items-center space-x-1 text-sm font-medium hover:text-primary transition-colors">
+                            <span>Employers</span>
+                            <i data-lucide="chevron-down" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                    <div class="relative group">
+                        <button class="flex items-center space-x-1 text-sm font-medium hover:text-primary transition-colors">
+                            <span>Help Center</span>
+                            <i data-lucide="chevron-down" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Right Side Actions -->
+                <div class="hidden md:flex items-center space-x-4">
+                    <a href="#" class="text-sm font-medium hover:text-primary px-4 py-2">Log In</a>
+                    <a href="#" class="text-sm font-medium text-slate-600 bg-slate-100 hover:bg-slate-200 px-5 py-2.5 rounded-full transition-all">Sign Up</a>
+                    <a href="#" class="text-sm font-semibold text-white bg-primary hover:bg-primary-dark px-6 py-2.5 rounded-full shadow-lg shadow-primary/20 transition-all">Post A Job</a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="p-2 rounded-lg hover:bg-slate-100 transition-colors">
+                        <i data-lucide="menu" class="w-6 h-6"></i>
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden absolute top-20 left-0 right-0 bg-white border-b border-slate-100 shadow-xl p-4 space-y-4 animate-fade-in">
+            <div class="space-y-4">
+                <a href="#" class="block text-base font-medium text-slate-700">Job Seekers</a>
+                <a href="#" class="block text-base font-medium text-slate-700">Career</a>
+                <a href="#" class="block text-base font-medium text-slate-700">Employers</a>
+                <a href="#" class="block text-base font-medium text-slate-700">Help Center</a>
+            </div>
+            <div class="pt-4 border-t border-slate-100 flex flex-col space-y-3">
+                <a href="#" class="text-center py-3 text-slate-700 font-medium">Log In</a>
+                <a href="#" class="text-center py-3 bg-slate-100 rounded-xl text-slate-700 font-medium">Sign Up</a>
+                <a href="#" class="text-center py-3 bg-primary text-white rounded-xl font-semibold">Post A Job</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="mt-20">
+        <!-- Hero Section -->
+        <section class="relative pt-16 pb-32 px-4 overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-br from-primary via-indigo-600 to-secondary opacity-95"></div>
+            <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#fff 1px, transparent 1px); background-size: 40px 40px;"></div>
+            
+            <div class="relative max-w-7xl mx-auto text-center">
+                <h1 class="text-4xl md:text-6xl font-extrabold text-white mb-8 animate-slide-up">
+                    Explore and discover the <br class="hidden md:block"> <span class="text-blue-200">right job for you!</span>
+                </h1>
+                
+                <!-- Search Bar -->
+                <div class="max-w-5xl mx-auto mt-12 animate-slide-up" style="animation-delay: 0.1s">
+                    <div class="bg-white/10 backdrop-blur-md p-2 rounded-2xl md:rounded-full border border-white/20 shadow-2xl">
+                        <div class="flex flex-col md:flex-row items-center gap-2">
+                            <!-- Job Function -->
+                            <div class="w-full md:flex-1 relative group">
+                                <div class="flex items-center px-6 py-4 rounded-xl md:rounded-full hover:bg-white/5 transition-colors cursor-pointer">
+                                    <i data-lucide="briefcase" class="w-5 h-5 text-white/70 mr-3"></i>
+                                    <div class="text-left">
+                                        <p class="text-[10px] text-white/60 uppercase font-bold tracking-wider">Job Function</p>
+                                        <p class="text-white font-medium">Select function</p>
+                                    </div>
+                                    <i data-lucide="chevron-down" class="ml-auto w-4 h-4 text-white/50"></i>
+                                </div>
+                            </div>
+                            
+                            <div class="hidden md:block w-px h-10 bg-white/20"></div>
+
+                            <!-- Industry -->
+                            <div class="w-full md:flex-1 relative">
+                                <div class="flex items-center px-6 py-4 rounded-xl md:rounded-full hover:bg-white/5 transition-colors cursor-pointer">
+                                    <i data-lucide="building-2" class="w-5 h-5 text-white/70 mr-3"></i>
+                                    <div class="text-left">
+                                        <p class="text-[10px] text-white/60 uppercase font-bold tracking-wider">Industry</p>
+                                        <p class="text-white font-medium">Select industry</p>
+                                    </div>
+                                    <i data-lucide="chevron-down" class="ml-auto w-4 h-4 text-white/50"></i>
+                                </div>
+                            </div>
+                            
+                            <div class="hidden md:block w-px h-10 bg-white/20"></div>
+
+                            <!-- Location -->
+                            <div class="w-full md:flex-1 relative">
+                                <div class="flex items-center px-6 py-4 rounded-xl md:rounded-full hover:bg-white/5 transition-colors cursor-pointer">
+                                    <i data-lucide="map-pin" class="w-5 h-5 text-white/70 mr-3"></i>
+                                    <div class="text-left">
+                                        <p class="text-[10px] text-white/60 uppercase font-bold tracking-wider">Location</p>
+                                        <p class="text-white font-medium">All Cities</p>
+                                    </div>
+                                    <i data-lucide="chevron-down" class="ml-auto w-4 h-4 text-white/50"></i>
+                                </div>
+                            </div>
+
+                            <!-- CTA -->
+                            <button class="w-full md:w-auto px-10 py-5 bg-white text-primary font-bold rounded-xl md:rounded-full shadow-xl hover:bg-slate-50 hover:scale-105 transition-all duration-300">
+                                Find a Job
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Popular Searches -->
+        <section class="max-w-7xl mx-auto px-4 -mt-10 relative z-10">
+            <div class="bg-white rounded-2xl shadow-lg p-6 flex flex-col md:flex-row items-center gap-6 border border-slate-100">
+                <span class="text-slate-500 font-medium whitespace-nowrap">Popular Searches:</span>
+                <div class="flex flex-wrap gap-2">
+                    <button class="px-4 py-2 bg-slate-50 hover:bg-primary/10 hover:text-primary text-slate-600 text-sm rounded-full border border-slate-200 transition-all">Hospitality & Hotel</button>
+                    <button class="px-4 py-2 bg-slate-50 hover:bg-primary/10 hover:text-primary text-slate-600 text-sm rounded-full border border-slate-200 transition-all">Lagos</button>
+                    <button class="px-4 py-2 bg-slate-50 hover:bg-primary/10 hover:text-primary text-slate-600 text-sm rounded-full border border-slate-200 transition-all">Banking, Finance & Insurance</button>
+                    <button class="px-4 py-2 bg-slate-50 hover:bg-primary/10 hover:text-primary text-slate-600 text-sm rounded-full border border-slate-200 transition-all">Full Time</button>
+                    <button class="px-4 py-2 bg-slate-50 hover:bg-primary/10 hover:text-primary text-slate-600 text-sm rounded-full border border-slate-200 transition-all">Remote</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Job Vacancies / Categories -->
+        <section class="max-w-7xl mx-auto px-4 py-24">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Find the right job vacancies</h2>
+                <p class="text-slate-500 text-lg">Experience-based filtering to help you land the perfect role</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Executive Level -->
+                <div class="group bg-white p-8 rounded-3xl border border-slate-100 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
+                    <div class="w-14 h-14 bg-indigo-50 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-primary transition-colors">
+                        <i data-lucide="crown" class="w-7 h-7 text-primary group-hover:text-white transition-colors"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-2">Executive level</h3>
+                    <p class="text-slate-500 mb-6">450+ Active Jobs</p>
+                    <a href="#" class="inline-flex items-center font-semibold text-primary group-hover:mr-2 transition-all">
+                        Explore Jobs <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
+                    </a>
+                </div>
+
+                <!-- Internship & Graduate -->
+                <div class="group bg-white p-8 rounded-3xl border border-slate-100 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
+                    <div class="w-14 h-14 bg-blue-50 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-secondary transition-colors">
+                        <i data-lucide="graduation-cap" class="w-7 h-7 text-secondary group-hover:text-white transition-colors"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-2">Internship & Graduate</h3>
+                    <p class="text-slate-500 mb-6">1,200+ Active Jobs</p>
+                    <a href="#" class="inline-flex items-center font-semibold text-primary">
+                        Explore Jobs <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
+                    </a>
+                </div>
+
+                <!-- Senior Level -->
+                <div class="group bg-white p-8 rounded-3xl border border-slate-100 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
+                    <div class="w-14 h-14 bg-purple-50 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-purple-600 transition-colors">
+                        <i data-lucide="award" class="w-7 h-7 text-purple-600 group-hover:text-white transition-colors"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-2">Senior level</h3>
+                    <p class="text-slate-500 mb-6">3,100+ Active Jobs</p>
+                    <a href="#" class="inline-flex items-center font-semibold text-primary">
+                        Explore Jobs <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
+                    </a>
+                </div>
+
+                <!-- Mid Level -->
+                <div class="group bg-white p-8 rounded-3xl border border-slate-100 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
+                    <div class="w-14 h-14 bg-emerald-50 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-emerald-600 transition-colors">
+                        <i data-lucide="trending-up" class="w-7 h-7 text-emerald-600 group-hover:text-white transition-colors"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-2">Mid level</h3>
+                    <p class="text-slate-500 mb-6">5,400+ Active Jobs</p>
+                    <a href="#" class="inline-flex items-center font-semibold text-primary">
+                        Explore Jobs <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
+                    </a>
+                </div>
+
+                <!-- Entry Level -->
+                <div class="group bg-white p-8 rounded-3xl border border-slate-100 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
+                    <div class="w-14 h-14 bg-orange-50 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-orange-600 transition-colors">
+                        <i data-lucide="rocket" class="w-7 h-7 text-orange-600 group-hover:text-white transition-colors"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-2">Entry level</h3>
+                    <p class="text-slate-500 mb-6">2,800+ Active Jobs</p>
+                    <a href="#" class="inline-flex items-center font-semibold text-primary">
+                        Explore Jobs <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
+                    </a>
+                </div>
+
+                <!-- No Experience -->
+                <div class="group bg-white p-8 rounded-3xl border border-slate-100 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
+                    <div class="w-14 h-14 bg-pink-50 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-pink-600 transition-colors">
+                        <i data-lucide="sparkles" class="w-7 h-7 text-pink-600 group-hover:text-white transition-colors"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-2">No Experience</h3>
+                    <p class="text-slate-500 mb-6">800+ Active Jobs</p>
+                    <a href="#" class="inline-flex items-center font-semibold text-primary">
+                        Explore Jobs <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="mt-16 text-center">
+                <button class="px-10 py-4 bg-slate-900 text-white font-bold rounded-2xl hover:bg-slate-800 transition-all shadow-xl shadow-slate-200">
+                    Explore All Categories
+                </button>
+            </div>
+        </section>
+
+        <!-- Featured Jobs Section -->
+        <section class="bg-white py-24 border-y border-slate-100">
+            <div class="max-w-7xl mx-auto px-4">
+                <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+                    <div class="text-left">
+                        <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Featured Jobs</h2>
+                        <p class="text-slate-500 text-lg">Hand-picked opportunities from top-tier companies</p>
+                    </div>
+                    <a href="#" class="inline-flex items-center font-semibold text-primary hover:underline">
+                        View all jobs <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
+                    </a>
+                </div>
+
+                <div id="job-container" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Jobs will be injected here via main.js -->
+                </div>
+
+                <div class="mt-16 text-center">
+                    <button class="px-10 py-4 bg-primary text-white font-bold rounded-2xl hover:bg-primary-dark transition-all shadow-xl shadow-primary/20">
+                        View More Jobs
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-100 pt-20 pb-10">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+                <div class="col-span-1 md:col-span-1">
+                    <a href="#" class="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent mb-6 block">
+                        Jobberman
+                    </a>
+                    <p class="text-slate-500 leading-relaxed mb-6">
+                        Nigeria's No.1 recruitment and job search platform. Helping you find the right talent or land your dream job.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-slate-50 flex items-center justify-center text-slate-400 hover:bg-primary hover:text-white transition-all">
+                            <i data-lucide="facebook" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-slate-50 flex items-center justify-center text-slate-400 hover:bg-primary hover:text-white transition-all">
+                            <i data-lucide="twitter" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-slate-50 flex items-center justify-center text-slate-400 hover:bg-primary hover:text-white transition-all">
+                            <i data-lucide="linkedin" class="w-5 h-5"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-slate-900 mb-6">Job Seekers</h4>
+                    <ul class="space-y-4 text-slate-500">
+                        <li><a href="#" class="hover:text-primary transition-colors">Jobs by Industry</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors">Jobs by Location</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors">Career Advice</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors">Resume Services</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-slate-900 mb-6">Employers</h4>
+                    <ul class="space-y-4 text-slate-500">
+                        <li><a href="#" class="hover:text-primary transition-colors">Post a Job</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors">Recruitment Solutions</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors">Candidate Search</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors">Pricing Plans</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-slate-900 mb-6">Support</h4>
+                    <ul class="space-y-4 text-slate-500">
+                        <li><a href="#" class="hover:text-primary transition-colors">Help Center</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors">Contact Us</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors">Terms of Use</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="pt-8 border-t border-slate-100 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-slate-400">
+                <p>© 2026 Jobberman. All rights reserved.</p>
+                <div class="flex space-x-6">
+                    <a href="#" class="hover:text-slate-600">Site Map</a>
+                    <a href="#" class="hover:text-slate-600">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Main Script -->
+    <script src="main.js"></script>
+</body>
+</html>
