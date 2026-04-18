@@ -1,0 +1,68 @@
+/* Custom Modern Styles */
+
+:root {
+    --primary-gradient: linear-gradient(135deg, #6366f1 0%, #3b82f6 100%);
+}
+
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Navbar Scroll Effect */
+#navbar.scrolled {
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    height: 4.5rem;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+}
+
+#navbar.scrolled .text-transparent {
+    /* Keep gradient logo */
+}
+
+/* Glassmorphism utility */
+.glass {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Custom Gradients */
+.bg-primary-gradient {
+    background: var(--primary-gradient);
+}
+
+/* Smooth Transitions */
+.transition-all {
+    transition-property: all;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 300ms;
+}
+
+/* Hide scrollbar for clean horizontal scrolling if needed */
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+.no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+/* Form input styling */
+input:focus, select:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+}
+
+/* Mobile Menu Animation */
+#mobile-menu.active {
+    display: block;
+}
+
+/* Image/Icon Hover */
+.group:hover i {
+    transform: scale(1.1);
+}
